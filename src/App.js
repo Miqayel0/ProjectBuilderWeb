@@ -1,82 +1,58 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Switch, withRouter } from "react-router-dom";
-import propTypes from "prop-types";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import Login from "./containers/login";
-import PrivateRoute from "./routes/ProtectedRoute";
-import Loading from "./components/loading";
-import PublicRoute from "./routes/PublicRoute";
-import Account from "./containers/Register"
-import { IsSignIn, Logout } from "./action/auth";
+import Account from "./containers/register";
+import { GetAccount, Logout } from "./action/auth";
+import Layout from "./hoc/Layout/Layout"
+import OngoingProjects from "./containers/projects/ongoing"
+import FinishedProjects from "./containers/projects/finished"
+
+//import PrivateRoute from "./routes/ProtectedRoute";
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-    }
-    componentWillMount() {
+    componentDidMount() {
         const token = localStorage.getItem("accessToken");
         if (token) {
-            this.props.IsSignIn(token);
+            this.props.GetAccount(token);
         }
     }
     render() {
-        const { loading, isSignIn, type } = this.props;
-        if (loading) {
-            return (
-                <div className="main">
-                    <Loading />
-                </div>
-            );
-        } else {
-            return (
-                <Switch>
-                    {/* <PrivateRoute
-            path="/home"
-            isSignIn={isSignIn}
-            permission={type}
-            permissions={[PERMISSIONS.SUPER_ADMIN]}
-            LogOut={this.props.LogOut}
-          >
-            <Home />
-          </PrivateRoute> */}
-                    <PublicRoute
-                        path="/signin"
-                        isSignIn={isSignIn}
-                        permission={type}
-                        component={Login}
-                    />
-                    <PublicRoute
-                        path="/signin"
-                        isSignIn={isSignIn}
-                        permission={type}
-                        component={Account}
-                    />
-                </Switch>
+        let routes = (
+            <Switch>
+                <Route path="/sign-up" exact component={Account} />
+                <Route path="/sign-in" exact component={Login} />} />
+                <Redirect to="/sign-in" />
+            </Switch>
+        );
+
+        if (this.props.isSignIn) {
+            routes = (
+                <Layout isAuth>
+                    <Switch>
+                        <Route path="/ongoing" exact component={OngoingProjects} />
+                        <Route path="/finished" exact component={FinishedProjects} />
+                        <Redirect to="/ongoing" />
+                    </Switch>
+                </Layout>
             );
         }
+        return <div className="App">{routes}</div>;
     }
 }
 
 const mapStateToProps = store => {
     return {
-        loading: store.user.loading,
-        isSignIn: store.user.isSignIn,
-        type: store.user.data.type
+        isSignIn: store.auth.isSignIn
     };
 };
 const mapDispatchToProps = dispatch => {
     return {
-        IsSignIn: token => dispatch(IsSignIn(token)),
-        LogOut: history => dispatch(Logout(history))
+        GetAccount: token => dispatch(GetAccount(token)),
+        Logout: history => dispatch(Logout(history))
     };
 };
 
-App.propTypes = {
-    loading: propTypes.bool.isRequired,
-    isSignIn: propTypes.bool.isRequired,
-    IsSignIn: propTypes.func.isRequired,
-    type: propTypes.string.isRequired
-};
 export default withRouter(
     connect(
         mapStateToProps,

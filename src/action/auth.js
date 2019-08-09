@@ -8,8 +8,6 @@ import {
 
 import Axios from "../Axios";
 
-const BASE_URL = process.env.BASE_URL;
-
 function SigniInSuccess(data) {
     return {
         type: SIGNIN_SUCCESS,
@@ -75,11 +73,11 @@ export function Login(username, password) {
     };
 }
 
-export function IsSignIn(token) {
+export function GetAccount(token) {
     return async dispatch => {
         try {
             dispatch(Loading(true));
-            const data = await Axios.get(`/is-sign-in`, {
+            const data = await Axios.get(`/account`, {
                 headers: {
                     Authorization: token
                 }

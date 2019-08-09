@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import LogOut from '../components/header/logout';
-import Account from '../components/header/account';
+import Account from "../components/header/account";
 import Menu from '../components/menu';
 import Footer from '../components/footer';
 import NotFound from '../components/notFound';

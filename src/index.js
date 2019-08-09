@@ -5,7 +5,6 @@ import App from "./App";
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import configureStore from './store/storeConfig';
-import Modal from './components/modal';
 import * as serviceWorker from "./serviceWorker";
 
 const store = configureStore();
@@ -17,11 +16,6 @@ const app = (
         <App />
       </BrowserRouter>
     </Provider>
-    <Modal
-      ref={Modal => {
-        window.modal = Modal;
-      }}
-    />
   </React.Fragment>
 );
 
