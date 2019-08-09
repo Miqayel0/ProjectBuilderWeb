@@ -13,8 +13,8 @@ class Menu extends Component {
                         permission={this.props.permission}
                         permissions={[PERMISSIONS.ADMIN, PERMISSIONS.USER]}
                     >
-                        <Link to="/home/outgoing" >
-                            <span className="name"> Outgoing</span>
+                        <Link to="/home/ongoing" >
+                            <span className="name"> ongoing</span>
                         </Link>
                     </MenuItem>
                 </ul>

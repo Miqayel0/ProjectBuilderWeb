@@ -1,112 +1,133 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Login } from '../../action/auth';
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { useSelector, useDispatch } from 'react-redux'
+import { Login } from "../../action/auth";
 
-let USERNAME_REGEX = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
+const useStyles = makeStyles(theme => ({
+    "@global": {
+        body: {
+            backgroundColor: theme.palette.common.white,
+        },
+    },
+    paper: {
+        marginTop: theme.spacing(8),
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: "100%", // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));
 
-class Root extends Component {
-    constructor() {
-        super();
-        this.ErrorMessage = {
-            usernameError: "Username is wrong",
-            passwordError: "Password is wrng",
-        }
-        this.state = {
-            username: '',
-            password: '',
-            error: { usernameError: false, passwordError: false },
-            showError: false,
-        };
-    }
+const SignIn = props => {
+    const classes = useStyles();
+    const dispatch = useDispatch()
+    const [userName, setUserName] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
-    inputHandler = e => {
-        const { name, value } = e.target;
-        const error = this.validateField(name, value);
-        this.setState({ [name]: value, error: Object.assign({}, this.state.error, error), showError: false });
-    }
-
-    validateField(fieldName, value) {
-        let error = {};
-        switch (fieldName) {
-            case 'username':
-                if (value && !USERNAME_REGEX.test(value)) {
-                    error.usernameError = true;
-                } else {
-                    error.usernameError = false;
-                }
-                break;
-            case 'password':
-                if (value && !(value.length >= 6)) {
-                    error.passwordError = true;
-                } else {
-                    error.passwordError = false;
-                }
-                break;
-            default:
-                throw new Error(`${fieldName} is not defined`);
-        }
-        return error;
-    }
-
-    clickHandler = () => {
-        const { username, password, error } = this.state;
-        if (username && password && Object.keys(error).every((item) => !error[item])) {
-            this.props.LoginAction(username, password, this.props.history);
-        } else {
-            this.setState({ showError: true });
-        }
-    }
-
-    render() {
-        const { username, password, error, showError } = this.state;
-        let errorMessage = null;
-        if (!(username && password)){
-            errorMessage = 'Username and Password are empty'
-        }else{
-            const keys = Object.keys(error);
-            keys.forEach((key) => {
-                if (error[key]){
-                    errorMessage = `${this.ErrorMessage[key]}`;
-                }
-            });
-        }  
-        return (
-            <div className="main">
-                <div className="login-form">
-                    <h1>Sign In</h1>
-                    <div className="head">
-                        <img src='/public/images/user_login.png' />
-                    </div>
-                    <form action="javascript:void(0);" >
-                        <input className={`valid ${error.usernameError ? 'error' : ''}`}
-                            name="username" type="text" value={username}
-                            onChange={this.inputHandler} placeholder="Username"
-                        />
-                        <input className={`valid ${error.passwordError ? 'error' : ''}`}
-                            name="password" type="password" value={password}
-                            onChange={this.inputHandler} placeholder="Password" 
-                        />
-                        {
-                            (errorMessage && showError) ? (
-                                <span className="error-message">{errorMessage}</span>
-                            ) : ''
-                        }
-                        <button type="submit" className="loginBtn" onClick={this.clickHandler}>LOGIN</button>ShopUser
-                    </form>     
-                </div>
-            </div>
-            )
-    }
-}
-
-const mapStateToProps = store => {
-    return {};
-}
-const mapDispatchToProps = dispatch => {
-    return {
-        LoginAction: (username, password, history) => dispatch(Login(username, password, history)),
+    const inputChangedHandler = (event, callBack) => {
+        callBack(event.target.value);
     };
+
+    const loginSubmitHandler = async event => {
+        event.preventDefault();
+        setError("");
+        dispatch(Login(userName, password));
+    };
+
+    return (
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Sign in
+                </Typography>
+                <span style={{ color: "red" }}>{error}</span>
+                <form className={classes.form} noValidate>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        value={userName}
+                        onChange={event =>
+                            inputChangedHandler(event, setUserName)
+                        }
+                        autoFocus
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={event =>
+                            inputChangedHandler(event, setPassword)
+                        }
+                        autoComplete="current-password"
+                    />
+                    <FormControlLabel
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Remember me"
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        onClick={loginSubmitHandler}
+                        className={classes.submit}
+                    >
+                        Sign In
+                    </Button>
+                    <Grid container>
+                        <Grid item xs>
+                            <Link href="#" variant="body2">
+                                Forgot password?
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link href={"/sign-up"} variant="body2">
+                                {"Don't have an account? Sign Up"}
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </form>
+            </div>
+        </Container>
+    );
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Root));
+export default SignIn;

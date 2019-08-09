@@ -12,7 +12,7 @@ export default class publicRoot extends Component {
         /*     case PERMISSIONS.ADMIN:
                     return (<Redirect to={'/some protected resource'} />) */
         default:
-          return <Redirect to={"/home/outgoing"} />;
+          return <Redirect to={"/home/ongoing"} />;
       }
     }
   }
