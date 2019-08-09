@@ -2,7 +2,7 @@ import {
     REGISTER_SUCCESS,
     REGISTER_ERROR,
     LOADING_START,
-    LOADING_END,
+    LOADING_END
 } from "../reducers/account-reducer";
 
 import Axios from "../Axios";
@@ -31,13 +31,8 @@ export function Register(formData) {
     return async dispatch => {
         try {
             dispatch(Loading(true));
-            const data = await Axios.post("/auth", formData, {
-                headers: {
-                    Authorization: localStorage.getItem("accessToken")
-                }
-            });
+            const data = await Axios.post("/account", formData);
             dispatch(RegisterSuccess(data.data.data));
-            localStorage.setItem("accessToken", data.data.data.accessToken);
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 alert(error.response.data.errors);
@@ -51,4 +46,3 @@ export function Register(formData) {
         }
     };
 }
-

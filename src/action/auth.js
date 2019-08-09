@@ -39,24 +39,10 @@ export function Login(username, password) {
         try {
             console.log(process.env);
             dispatch(Loading(true));
-            const data = await Axios.post(
-                "/auth",
-                {
-                    username: username,
-                    password: password
-                },
-                {
-                    headers: {
-                        Authorization: localStorage.getItem("accessToken")
-                    }
-                }
-            );
-            if (
-                data.data.data.type === "USER" ||
-                data.data.data.type === "SHOP_USER"
-            ) {
-                throw new Error("incorect token");
-            }
+            const data = await Axios.post("/auth", {
+                username: username,
+                password: password
+            });
             dispatch(SigniInSuccess(data.data.data));
             localStorage.setItem("accessToken", data.data.data.accessToken);
         } catch (error) {
