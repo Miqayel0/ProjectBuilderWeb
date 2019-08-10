@@ -1,18 +1,23 @@
 import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import "./menu.scss"
+import { Link, withRouter } from "react-router-dom";
+import "./menu.scss";
 
 class SideDrawer extends Component {
     render() {
         return (
             <div className={"SideDrawer"}>
-                <span>Projects</span>
-                <NavLink to="/home/ongoing" exact>
-                    <span className="name">Ongoing Projects</span>
-                </NavLink>
-                <NavLink to="/home/finished" exact>
-                    <span className="name">Finished Projects</span>
-                </NavLink>
+                <div className="Icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18.506" height="18.506" ></svg>
+                    <p>Projects</p>
+                </div>
+                <div className="LinkList">
+                    <div className="NavItem">
+                        <Link to="/ongoing">Ongoing Projects</Link>
+                    </div>
+                    <div className="NavItem">
+                        <Link to="/finished">Finished Projects</Link>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -4,9 +4,9 @@ import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import Login from "./containers/login";
 import Account from "./containers/register";
 import { GetAccount, Logout } from "./action/auth";
-import Layout from "./hoc/Layout/Layout"
-import OngoingProjects from "./containers/projects/ongoing"
-import FinishedProjects from "./containers/projects/finished"
+import Layout from "./hoc/Layout/Layout";
+import OngoingProjects from "./containers/projects/ongoingProjects";
+import FinishedProjects from "./containers/projects/finishedProjects";
 
 //import PrivateRoute from "./routes/ProtectedRoute";
 
@@ -30,8 +30,16 @@ class App extends Component {
             routes = (
                 <Layout isAuth>
                     <Switch>
-                        <Route path="/ongoing" exact component={OngoingProjects} />
-                        <Route path="/finished" exact component={FinishedProjects} />
+                        <Route
+                            path="/ongoing"
+                            exact
+                            component={OngoingProjects}
+                        />
+                        <Route
+                            path="/finished"
+                            exact
+                            component={FinishedProjects}
+                        />
                         <Redirect to="/ongoing" />
                     </Switch>
                 </Layout>
@@ -43,7 +51,8 @@ class App extends Component {
 
 const mapStateToProps = store => {
     return {
-        isSignIn: store.auth.isSignIn
+        isSignIn: store.auth.isSignIn,
+        canLogin: store.account.canLogin
     };
 };
 const mapDispatchToProps = dispatch => {

@@ -9,8 +9,8 @@ class Layout extends Component {
     render() {
         return (
             <React.Fragment>
-                <Toolbar isAuth={this.props.isAuthenticated} />
-                <SideDrawer isAuth={this.props.isAuthenticated} />
+                <Toolbar isAuth={this.props.isAuth} />
+                <SideDrawer isAuth={this.props.isAuth} />
                 <main className={"Content"}>{this.props.children}</main>
             </React.Fragment>
         );

@@ -27,11 +27,13 @@ function Loading(bool) {
         playload: null
     };
 }
-export function Register(formData) {
+export function Register(formData, history) {
     return async dispatch => {
         try {
             dispatch(Loading(true));
             const data = await Axios.post("/account", formData);
+            console.log("HISTORY",history);
+            history.push("/sign-in");
             dispatch(RegisterSuccess(data.data.data));
         } catch (error) {
             if (error.response && error.response.data.errors) {

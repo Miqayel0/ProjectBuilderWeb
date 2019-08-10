@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -59,12 +60,12 @@ const SignUp = props => {
 
         let formData = new FormData(); //formdata object
         formData.append("userName", userName); //append the values with key, value pair
-        formData.append("firstName", firstName);
-        formData.append("lastName", lastName);
+        formData.append("name", firstName);
+        formData.append("surname", lastName);
         formData.append("email", email);
         formData.append("password", password);
         formData.append("confirmPassword", confirmPassword);
-        dispatch(Register(formData));
+        dispatch(Register(formData, props.history));
     };
 
     return (
@@ -210,4 +211,4 @@ const SignUp = props => {
     );
 };
 
-export default SignUp;
+export default withRouter(SignUp);

@@ -4,5 +4,5 @@ import AccountReducer from "./account-reducer";
 
 export default combineReducers({
     auth: AuthReducer,
-    AccountReducer
+    account: AccountReducer
 });

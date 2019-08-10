@@ -1,0 +1,35 @@
+.Continer {
+    padding: 47px;
+    background-color: #F0F1F6;
+    z-index: 50;
+    height: 100%;
+    .Top {
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        align-items: center;
+        span {
+            font-size: 32px;
+        }
+        .Button {
+            background-color: black;
+            border: none;
+            color: white;
+            outline: none;
+            cursor: pointer;
+            size: 15px;
+            width: 270px;
+            height: 50px;
+        }
+
+        .Button:first-of-type {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .Button:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+    }
+}

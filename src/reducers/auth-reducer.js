@@ -7,9 +7,7 @@ export const SIGNOUT_SUCCESS = 'SIGNOUT_SUCCESS';
 
 const initStore = {
     loading: false,
-    data: {
-        type: 'USER'
-    },
+    data: {},
     isSignIn: false, // change for local work
     error: "",
 }
