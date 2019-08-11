@@ -6,12 +6,18 @@ import "./Finished.scss";
 const FinishedProjects = props => {
     let roles = useSelector(state => state.auth.data.roles);
     let isAdmin = roles.includes("Admin");
+
     return (
         <div className="Continer">
             <div className="Top">
                 <span>Finished Projects</span>
                 {isAdmin && (
-                    <button className="Button">CREATE NEW PROJECT</button>
+                    <button
+                        className="Button"
+                        onClick={() => props.history.push("/create")}
+                    >
+                        CREATE NEW PROJECT
+                    </button>
                 )}
             </div>
             <Project />

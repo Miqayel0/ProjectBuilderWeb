@@ -1,0 +1,124 @@
+.Create {
+    padding: 47px;
+    background-color: #f0f1f6;
+    z-index: 50;
+    height: 100%;
+    .Top {
+        p {
+            font-size: 24px;
+        }
+        .Content {
+            margin: 60px;
+            margin-left: 0px;
+            box-sizing: border-box;
+            //text-align: center;
+            .Image {
+                width: 1500px;
+                height: 660px;
+                background-color: white;
+                text-align: center;
+                box-shadow: 0px 3px 23px rgba(0, 0, 0, 0.1);
+                svg {
+                    margin-top: 200px;
+                    .a {
+                        fill: #fff;
+                    }
+                    .b {
+                        fill: none;
+                        stroke: #d9d9d9;
+                        stroke-linecap: round;
+                        stroke-width: 3px;
+                    }
+                    .c {
+                        filter: url(#a);
+                    }
+                }
+            }
+            .Input {
+                width: 1500px;
+                background-color: #fff;
+                box-shadow: 0px 3px 23px rgba(0, 0, 0, 0.1);
+                .Cont {
+                    .Tile {
+                        padding: 30px;
+                    }
+                    margin-top: 10px;
+                    margin: 60px;
+                }
+
+                span {
+                    font-size: 18px;
+                    color: #616161;
+                }
+
+                input,
+                textarea {
+                    border-radius: 7px;
+                    color: #9A9A9A;
+                    font-size: 18px;
+                    padding: 5px;
+                    font-family: Circular, Bool;
+                }
+
+                .TextInput {
+                    input {
+                        margin-top: 5px;
+                        height: 50px;
+                        width: 100%;
+                        border: #bfbfbf 1px solid;
+                        margin-bottom: 50px;
+                    }
+                }
+
+                .Dates {
+                    margin-top: 48px;
+                    display: flex;
+                    justify-content: space-between;
+                    div {
+                        //display: inline;
+                        width: 40%;
+                        input {
+                            border: #bfbfbf 1px solid;
+                            margin-top: 5px;
+                            height: 50px;
+                            width: 100%;
+                        }
+                    }
+                }
+                textarea {
+                    margin-top: 5px;
+                    width: 100%;
+                    margin-bottom: 50px;
+                    border: #bfbfbf 1px solid;
+                }
+
+                .Button {
+                    margin: 40px 50px 75px 100px;
+                    background-color: black;
+                    border: none;
+                    color: white;
+                    outline: none;
+                    cursor: pointer;
+                    size: 15px;
+                    width: 270px;
+                    height: 50px;
+                }
+
+                .Button:hover,
+                .Button:active {
+                    background-color: rgba(10, 10, 10, 0.84);
+                }
+
+                .Button:first-of-type {
+                    margin-left: 0;
+                    padding-left: 0;
+                }
+
+                .Button:disabled {
+                    color: #ccc;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}

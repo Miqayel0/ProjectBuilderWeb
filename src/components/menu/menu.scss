@@ -9,12 +9,20 @@
     background-color: #000000;
     box-sizing: border-box;
     .Icon {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         margin: 15px;
         p {
+            margin-left: 20px;
             color: #ffffff;
         }
         svg {
-            color: #ffffff;
+            .a {
+                fill: #fff;
+                stroke: #fff;
+                stroke-width: 0.2px;
+            }
         }
     }
     .LinkList {

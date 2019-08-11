@@ -32,7 +32,6 @@ export function Register(formData, history) {
         try {
             dispatch(Loading(true));
             const data = await Axios.post("/account", formData);
-            console.log("HISTORY",history);
             history.push("/sign-in");
             dispatch(RegisterSuccess(data.data.data));
         } catch (error) {
