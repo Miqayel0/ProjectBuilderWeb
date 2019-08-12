@@ -28,6 +28,7 @@ const OngoingProjects = props => {
                     </button>
                 )}
             </div>
+            <p className="Count">60 projects</p>
             <div className="Contentt">
                 {projects.map(p => (
                     <Project key={p.id} {...p} />
