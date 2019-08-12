@@ -1,6 +1,7 @@
 import {
     PROJECT_SUCCESS,
     PROJECT_ERROR,
+    CREATE_PROJECT_SUCCESS,
     LOADING_START,
     LOADING_END
 } from "../reducers/project-reducer";
@@ -10,6 +11,13 @@ import Axios from "../Axios";
 function ProjectSuccess(data) {
     return {
         type: PROJECT_SUCCESS,
+        playload: data
+    };
+}
+
+function CreateProjectSuccess(data) {
+    return {
+        type: CREATE_PROJECT_SUCCESS,
         playload: data
     };
 }
@@ -38,7 +46,7 @@ export function CreateProject(formData) {
                     "Content-Type": "multipart/form-data"
                 }
             });
-            dispatch(ProjectSuccess(data.data.data));
+            dispatch(CreateProjectSuccess(data.data));
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 alert(error.response.data.errors);
@@ -63,7 +71,7 @@ export function GetProject(filter) {
                     Authorization: localStorage.getItem("accessToken")
                 }
             });
-            dispatch(ProjectSuccess(data.data.data));
+            dispatch(ProjectSuccess(data.data));
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 alert(error.response.data.errors);

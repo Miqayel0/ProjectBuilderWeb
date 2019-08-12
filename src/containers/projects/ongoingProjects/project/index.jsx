@@ -2,7 +2,7 @@ import React from "react";
 import { formatDate } from "../../../../utils/Helper";
 import "./Project.scss";
 
-const finishedProject = props => {
+const ongoingProject = props => {
     return (
         <div className="Project">
             <div className="Location">
@@ -39,4 +39,4 @@ const finishedProject = props => {
     );
 };
 
-export default finishedProject;
+export default ongoingProject;

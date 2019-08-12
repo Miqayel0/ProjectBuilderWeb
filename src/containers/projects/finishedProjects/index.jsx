@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Project from "./project";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { GetProject } from "../../../action/project";
 import "./Finished.scss";
 
 const FinishedProjects = props => {
+    const dispatch = useDispatch();
+    const getProject = filter => dispatch(GetProject(filter));
     let roles = useSelector(state => state.auth.data.roles);
+    let projects = useSelector(state => state.project.data);
     let isAdmin = roles.includes("Admin");
+
+    useEffect(() => {
+        getProject({});
+    }, []);
 
     return (
         <div className="Continer">
@@ -20,7 +28,11 @@ const FinishedProjects = props => {
                     </button>
                 )}
             </div>
-            <Project />
+            <div className="Contentt">
+                {projects.map(p => (
+                    <Project key={p.id} {...p} />
+                ))}
+            </div>
         </div>
     );
 };
