@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import Login from "./containers/login";
-import Account from "./containers/register";
+import Account from "./containers/Register";
 import { GetAccount, Logout } from "./action/auth";
 import Layout from "./hoc/Layout/Layout";
 import OngoingProjects from "./containers/projects/ongoingProjects";

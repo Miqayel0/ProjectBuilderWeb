@@ -25,8 +25,7 @@ const CreateProjects = props => {
     };
 
     const uploadImgHnadler = event => {
-        console.log(event.target.files);
-        setFiles(event.target.files);
+        setFiles(event.target.files[0]);
     };
 
     const submitHandler = event => {
@@ -38,7 +37,7 @@ const CreateProjects = props => {
         formData.append("amount", amount);
         formData.append("startDate", startDate);
         formData.append("endDate", endDate);
-        formData.append("files", files[0]);
+        formData.append("files", files);
 
         dispatch(CreateProject(formData));
     };
@@ -57,7 +56,7 @@ const CreateProjects = props => {
                             <input
                                 type="file"
                                 ref={input => (inputFileElement = input)}
-                                onClick={uploadImgHnadler}
+                                onChange={uploadImgHnadler}
                                 style={{ display: "none" }}
                             />
                             <svg
