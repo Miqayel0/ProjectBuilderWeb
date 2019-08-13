@@ -8,13 +8,12 @@ import Layout from "./hoc/Layout/Layout";
 import OngoingProjects from "./containers/projects/ongoingProjects";
 import FinishedProjects from "./containers/projects/finishedProjects";
 import CreateProject from "./containers/projects/CreateProject";
-
-//import PrivateRoute from "./routes/ProtectedRoute";
+import PropjectDetails from "./containers/projects/projectDetails";
 
 class App extends Component {
     componentDidMount() {
         const token = localStorage.getItem("accessToken");
-        if (token && !this.props.isSignIn) {
+        if (token) {
             this.props.GetAccount(token);
         }
     }
@@ -42,6 +41,11 @@ class App extends Component {
                             component={FinishedProjects}
                         />
                         <Route path="/create" exact component={CreateProject} />
+                        <Route
+                            path="/project-details/:id"
+                            exact
+                            component={PropjectDetails}
+                        />
                         <Redirect to="/ongoing" />
                     </Switch>
                 </Layout>

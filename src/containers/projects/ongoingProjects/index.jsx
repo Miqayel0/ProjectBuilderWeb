@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Project from "./project";
 import { useSelector, useDispatch } from "react-redux";
 import { GetProject } from "../../../action/project";
+import { withRouter } from "react-router";
 import "./Ongoing.scss";
 
 const OngoingProjects = props => {
@@ -30,12 +31,19 @@ const OngoingProjects = props => {
             </div>
             <p className="Count">60 projects</p>
             <div className="Contentt">
-                {projects.map(p => (
-                    <Project key={p.id} {...p} />
-                ))}
+                {projects.map(p => {
+                    const { location, ...projectExceptLocation } = p;
+                    return (
+                        <Project
+                            key={p.id}
+                            {...projectExceptLocation}
+                            Location={p.location}
+                        />
+                    );
+                })}
             </div>
         </div>
     );
 };
 
-export default OngoingProjects;
+export default withRouter(OngoingProjects);

@@ -1,10 +1,14 @@
 import React from "react";
 import { formatDate } from "../../../../utils/Helper";
+import { withRouter } from "react-router";
 import "./Project.scss";
 
 const ongoingProject = props => {
     return (
-        <div className="ProjectOngoing">
+        <div
+            className="ProjectOngoing"
+            onClick={() => props.history.push(`/project-details/${props.id}`)}
+        >
             <div className="Location">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -16,14 +20,14 @@ const ongoingProject = props => {
                     <g transform="translate(0 0)">
                         <g transform="translate(0)">
                             <path
-                                class="a"
+                                className="a"
                                 d="M76.937,0a6.371,6.371,0,0,0-6.364,6.364c0,4.355,5.7,10.748,5.938,11.018a.573.573,0,0,0,.853,0c.242-.27,5.938-6.663,5.938-11.018A6.371,6.371,0,0,0,76.937,0Zm0,9.566a3.2,3.2,0,1,1,3.2-3.2A3.206,3.206,0,0,1,76.937,9.566Z"
                                 transform="translate(-70.573)"
                             />
                         </g>
                     </g>
                 </svg>
-                <span>{props.location}</span>
+                <span>{props.Location}</span>
             </div>
             <div className="Title">
                 <span>{props.name}</span>
@@ -61,4 +65,4 @@ const ongoingProject = props => {
     );
 };
 
-export default ongoingProject;
+export default withRouter(ongoingProject);
