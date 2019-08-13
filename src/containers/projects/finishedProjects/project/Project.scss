@@ -1,4 +1,4 @@
-.Project {
+.ProjectFinished {
     width: 412px;
     height: 376px;
     border-radius: 8px;
@@ -10,15 +10,29 @@
     justify-content: space-around;
 
     .Location {
+        svg {
+            .a {
+                fill: #f11b5d;
+            }
+            margin-right: 10px;
+        }
         font-size: 18px;
     }
 
     .Title {
         font-size: 25px;
+        font-weight: 700;
     }
 
     .Description {
         font-size: 20px;
+        p {
+            margin-bottom: 0px;
+            margin-top: 17px;
+            height: 57px;
+            line-height: 27px; /* Height / no. of lines to display */
+            overflow: hidden;
+        }
     }
 
     .Date {
@@ -32,14 +46,28 @@
 
     .Amount {
         .Line {
+            position: absolute;
+            z-index: 10;
             margin-bottom: 10px;
             border-radius: 4px;
-            background-color: #f11b5d;
-            width: 100%;
+            background-color: #efefef;
+            width: 412px;
             height: 5.58px;
         }
 
-        font-size: 16px;
+        .Line2 {
+            position: relative;
+            z-index: 20;
+            border-radius: 4px;
+            background-color: #f11b5d;
+            width: 50%;
+            height: 5.58px;
+            margin-bottom: 10px;
+        }
+
+        span {
+            font-size: 16px;
+        }
     }
 
     .Sponsors {
