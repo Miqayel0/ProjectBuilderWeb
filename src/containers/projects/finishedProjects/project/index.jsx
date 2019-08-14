@@ -3,6 +3,7 @@ import { formatDate } from "../../../../utils/Helper";
 import "./Project.scss";
 
 const finishedProject = props => {
+    console.log("props",props);
     return (
         <div className="ProjectFinished">
             <div className="Location">

@@ -2,6 +2,7 @@ import {
     PROJECT_SUCCESS,
     PROJECT_ERROR,
     CREATE_PROJECT_SUCCESS,
+    UPDATE_PROJECT_SUCCESS,
     PROJECT_DETAILS_SUCCESS,
     LOADING_START,
     LOADING_END
@@ -19,6 +20,13 @@ function ProjectSuccess(data) {
 function ProjectDetailsSuccess(data) {
     return {
         type: PROJECT_DETAILS_SUCCESS,
+        playload: data
+    };
+}
+
+function UpdateProjectSuccess(data) {
+    return {
+        type: UPDATE_PROJECT_SUCCESS,
         playload: data
     };
 }
@@ -78,8 +86,31 @@ export function GetProjectDetails(id) {
                     Authorization: localStorage.getItem("accessToken")
                 }
             });
-            console.log(data);
             dispatch(ProjectDetailsSuccess(data.data));
+        } catch (error) {
+            if (error.response && error.response.data.errors) {
+                alert(error.response.data.errors);
+                dispatch(ProjectError(error.response.data.errors));
+            } else {
+                alert(error.message);
+                dispatch(ProjectError(error.message));
+            }
+        } finally {
+            dispatch(Loading(false));
+        }
+    };
+}
+
+export function UpdateProject(id, body) {
+    return async dispatch => {
+        try {
+            dispatch(Loading(true));
+            const data = await Axios.put(`/project/${id}`, body, {
+                headers: {
+                    Authorization: localStorage.getItem("accessToken")
+                }
+            });
+            dispatch(UpdateProjectSuccess(data.data));
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 alert(error.response.data.errors);
@@ -105,30 +136,6 @@ export function GetProject(filter) {
                 }
             });
             dispatch(ProjectSuccess(data.data));
-        } catch (error) {
-            if (error.response && error.response.data.errors) {
-                alert(error.response.data.errors);
-                dispatch(ProjectError(error.response.data.errors));
-            } else {
-                alert(error.message);
-                dispatch(ProjectError(error.message));
-            }
-        } finally {
-            dispatch(Loading(false));
-        }
-    };
-}
-
-export function UpdateProject(id, formData) {
-    return async dispatch => {
-        try {
-            dispatch(Loading(true));
-            const data = await Axios.put(`/project/${id}`, formData, {
-                headers: {
-                    Authorization: localStorage.getItem("accessToken")
-                }
-            });
-            dispatch(ProjectSuccess(data.data.data));
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 alert(error.response.data.errors);

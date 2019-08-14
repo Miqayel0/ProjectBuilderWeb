@@ -4,6 +4,17 @@ import { withRouter } from "react-router";
 import "./Project.scss";
 
 const ongoingProject = props => {
+    var lineStyle = {
+        position: "relative",
+        zIndex: "20",
+        borderRadius: "4px",
+        backgroundColor: "#f11b5d",
+        //width: 50%;
+        height: "5.58px",
+        marginBottom: "10px",
+        width: `${props.amountRisedPercent}%`
+    };
+
     return (
         <div
             className="ProjectOngoing"
@@ -48,11 +59,11 @@ const ongoingProject = props => {
             <div className="Amount">
                 <div>
                     <div className="Line" />
-                    <div className="Line2" />
+                    <div style={lineStyle} />
                 </div>
                 <div className="Span">
                     {" "}
-                    <span>{`${props.amountRisedPercent} Rised of $${
+                    <span>{`${props.amountRisedPercent}% raised of $${
                         props.amount
                     } target`}</span>{" "}
                 </div>

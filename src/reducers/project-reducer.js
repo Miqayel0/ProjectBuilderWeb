@@ -5,6 +5,7 @@ export const LOADING_START = "LOADING_START";
 export const LOADING_END = "LOADING_END";
 export const SIGNOUT_SUCCESS = "SIGNOUT_SUCCESS";
 export const CREATE_PROJECT_SUCCESS = "CREATE_PROJECT_SUCCESS";
+export const UPDATE_PROJECT_SUCCESS = "CREATE_PROJECT_SUCCESS";
 
 const initStore = {
     loading: false,
@@ -27,6 +28,11 @@ const ProjectReducer = (store = initStore, action) => {
                 ...store,
                 project: action.playload,
                 count: 1
+            };
+        case UPDATE_PROJECT_SUCCESS:
+            return {
+                ...store,
+                project: action.playload
             };
         case PROJECT_ERROR:
             return { ...store, error: action.playload };
