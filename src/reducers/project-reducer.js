@@ -1,4 +1,5 @@
 export const PROJECT_SUCCESS = "PROJECT_SUCCESS";
+export const PROJECT_DETAILS_SUCCESS = "PROJECT_DETAILS_SUCCESS";
 export const PROJECT_ERROR = "PROJECT_ERROR";
 export const LOADING_START = "LOADING_START";
 export const LOADING_END = "LOADING_END";
@@ -8,6 +9,7 @@ export const CREATE_PROJECT_SUCCESS = "CREATE_PROJECT_SUCCESS";
 const initStore = {
     loading: false,
     data: [],
+    project: null,
     count: 0,
     error: ""
 };
@@ -19,6 +21,12 @@ const ProjectReducer = (store = initStore, action) => {
                 ...store,
                 data: action.playload.projects,
                 count: action.playload.count
+            };
+        case PROJECT_DETAILS_SUCCESS:
+            return {
+                ...store,
+                project: action.playload,
+                count: 1
             };
         case PROJECT_ERROR:
             return { ...store, error: action.playload };

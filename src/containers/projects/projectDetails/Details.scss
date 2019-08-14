@@ -1,116 +1,209 @@
 .Details {
-    .Image {
-        position: absolute;
-        z-index: 10;
-        width: 100%;
-        height: 100%;
-        img {
-            width: 100%;
-            height: 835px;
-            background: transparent
-                linear-gradient(180deg, #000000 0%, #000000 100%) 0% 0%
-                no-repeat padding-box;
-            box-shadow: 0px 3px 19px #000000;
+    .Head {
+        .Image {
+            position: absolute;
+            z-index: 10;
+            //width: 100%;
+            height: 100%;
+            img {
+                width: 100%;
+                height: 835px;
+                background: transparent
+                    linear-gradient(180deg, #000000 0%, #000000 100%) 0% 0%
+                    no-repeat padding-box;
+                box-shadow: 0px 3px 19px #000000;
+                opacity: 1;
+            }
+        }
+
+        .Status {
+            position: absolute;
+            z-index: 15;
+            top: 756px;
+            left: 455px;
+            width: 557px;
+            height: 11px;
+            background: #f11b5d 0% 0% no-repeat padding-box;
+            border-radius: 40px;
             opacity: 1;
         }
-    }
 
-    .Status {
-        position: absolute;
-        z-index: 15;
-        top: 756px;
-        left: 455px;
-        width: 557px;
-        height: 11px;
-        background: #f11b5d 0% 0% no-repeat padding-box;
-        border-radius: 40px;
-        opacity: 1;
-    }
-
-    .Status2 {
-        position: absolute;
-        z-index: 13;
-        top: 756px;
-        left: 455px;
-        width: 854px;
-        height: 11px;
-        background: #ffb6c1;
-        border-radius: 40px;
-        opacity: 1;
-    }
-    .Status3 {
-        position: absolute;
-        z-index: 12;
-        top: 756px;
-        left: 455px;
-        width: 1254px;
-        height: 11px;
-        background: #ffffff 0% 0% no-repeat padding-box;
-        border-radius: 40px;
-        opacity: 1;
-    }
-
-    .Title {
-        position: absolute;
-        z-index: 12;
-        top: 652px;
-        left: 448px;
-        width: 772px;
-        height: 63px;
-        text-align: left;
-        font-size: 50px;
-        letter-spacing: 0.5px;
-        color: #ffffff;
-        opacity: 1;
-    }
-
-    .Locationn {
-        position: absolute;
-        z-index: 12;
-        top: 622px;
-        left: 474px;
-        width: 136px;
-        height: 23px;
-        text-align: left;
-        font: Book 18px/23px Circular;
-        letter-spacing: -0.38px;
-        color: #ffffff;
-        opacity: 1;
-    }
-
-    .Donate {
-        position: absolute;
-        z-index: 12;
-        top: 170px;
-        left: 1392px;
-        width: 412px;
-        height: 482px;
-        background: #ffffff 0% 0% no-repeat padding-box;
-        box-shadow: 0px 3px 15px #000000;
-        opacity: 1;
-
-        .Goal {
-            top: 200;
-            left: 1424px;
-            width: 39px;
-            height: 23px;
-            text-align: left;
-            font-size: 18px;
-            letter-spacing: 0.18px;
-            color: #9a9a9a;
+        .Status2 {
+            position: absolute;
+            z-index: 13;
+            top: 756px;
+            left: 455px;
+            width: 854px;
+            height: 11px;
+            background: #ffb6c1;
+            border-radius: 40px;
             opacity: 1;
         }
-        .Amount {
-            top: 216px;
-            left: 1424px;
-            width: 242px;
+        .Status3 {
+            position: absolute;
+            z-index: 12;
+            top: 756px;
+            left: 455px;
+            width: 1254px;
+            height: 11px;
+            background: #ffffff 0% 0% no-repeat padding-box;
+            border-radius: 40px;
+            opacity: 1;
+        }
+
+        .Title {
+            position: absolute;
+            z-index: 12;
+            top: 652px;
+            left: 448px;
+            width: 1000px;
             height: 63px;
             text-align: left;
             font-size: 50px;
+            font-weight: 500;
             letter-spacing: 0.5px;
-            font-weight: 700;
-            color: #000000;
+            color: #ffffff;
             opacity: 1;
+        }
+
+        .Location {
+            position: absolute;
+            z-index: 12;
+            top: 622px;
+            left: 448px;
+            width: 500px;
+            height: 23px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 18px;
+            letter-spacing: -0.38px;
+            color: #ffffff;
+            opacity: 1;
+        }
+
+        .Donate {
+            padding: 32px;
+            position: absolute;
+            z-index: 12;
+            top: 170px;
+            left: 1392px;
+            width: 348px;
+            height: 418px;
+            background: #ffffff 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 15px #000000;
+            opacity: 1;
+
+            .Goal {
+                top: 200;
+                left: 1424px;
+                width: 39px;
+                height: 23px;
+                text-align: left;
+                font-size: 18px;
+                letter-spacing: 0.18px;
+                color: #9a9a9a;
+                opacity: 1;
+            }
+            .Amount {
+                top: 216px;
+                left: 1440px;
+                width: 100%;
+                height: 63px;
+                text-align: left;
+                font-size: 50px;
+                letter-spacing: 0.5px;
+                font-weight: 700;
+                color: #000000;
+                opacity: 1;
+            }
+
+            .Rised {
+                width: 188px;
+                height: 32px;
+                text-align: left;
+                font-size: 25px;
+                letter-spacing: 0.25px;
+                opacity: 1;
+            }
+
+            .Input {
+                margin-top: 47px;
+                input {
+                    padding-left: 18px;
+                    width: 329px;
+                    height: 50px;
+                    background: #ffffff 0% 0% no-repeat padding-box;
+                    border: 1px solid #bfbfbf;
+                    opacity: 1;
+                    color: #9a9a9a;
+                    font-size: 18px;
+                }
+            }
+
+            .Button {
+                margin-top: 40px;
+                background-color: black;
+                border: none;
+                color: white;
+                outline: none;
+                cursor: pointer;
+                size: 15px;
+                width: 100%;
+                height: 50px;
+            }
+
+            .Button:hover,
+            .Button:active {
+                background-color: rgba(10, 10, 10, 0.84);
+            }
+
+            .Button:first-of-type {
+                margin-left: 0;
+                padding-left: 0;
+            }
+
+            .Button:disabled {
+                color: #ccc;
+                cursor: not-allowed;
+            }
+
+            .Help {
+                margin-top: 50px;
+                text-align: center;
+                .P1 {
+                    margin-bottom: 4px;
+                    font-size: 18px;
+                    letter-spacing: 0.18px;
+                }
+
+                .P2 {
+                    margin: 4px;
+                    letter-spacing: 0.18px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    .Contentt {
+        position: absolute;
+        left: 455px;
+        top: 975px;
+        p {
+            font-size: 20px;
+            letter-spacing: -0.42px;
+            font-weight: 700;
+            opacity: 1;
+        }
+
+        span {
+            font-size: 18px;
+            letter-spacing: -0.38px;
+        }
+
+        .Descript {
+            margin-top: 50px;
+            width: 1274px;
+            padding-bottom: 50px;
         }
     }
 }
