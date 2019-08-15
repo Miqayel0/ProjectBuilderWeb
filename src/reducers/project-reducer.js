@@ -1,4 +1,5 @@
-export const PROJECT_SUCCESS = "PROJECT_SUCCESS";
+export const FINISHED_PROJECT_SUCCESS = "FINISHED_PROJECT_SUCCESS";
+export const ONGOING_PROJECT_SUCCESS = "ONGOING_PROJECT_SUCCESS";
 export const PROJECT_DETAILS_SUCCESS = "PROJECT_DETAILS_SUCCESS";
 export const PROJECT_ERROR = "PROJECT_ERROR";
 export const LOADING_START = "LOADING_START";
@@ -17,7 +18,13 @@ const initStore = {
 
 const ProjectReducer = (store = initStore, action) => {
     switch (action.type) {
-        case PROJECT_SUCCESS:
+        case ONGOING_PROJECT_SUCCESS:
+            return {
+                ...store,
+                data: action.playload.projects,
+                count: action.playload.count
+            };
+        case FINISHED_PROJECT_SUCCESS:
             return {
                 ...store,
                 data: action.playload.projects,

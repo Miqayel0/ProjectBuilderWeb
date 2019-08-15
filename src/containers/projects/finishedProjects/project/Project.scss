@@ -37,41 +37,32 @@
 
     .Date {
         display: flex;
+        justify-content: space-between;
         font-size: 20px;
+
+        .Reised {
+            color: red;
+            font-weight: 700;
+        }
+
         p {
             font-size: 16px;
             color: #9b9b9b;
         }
     }
 
-    .Amount {
-        .Line {
-            position: absolute;
-            z-index: 10;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            background-color: #efefef;
-            width: 412px;
-            height: 5.58px;
+    .Bottom {
+        display: flex;
+        justify-content: space-between;
+        .Sponsors {
+            display: flex;
+            font-size: 18px;
+            color: #b2b2b2;
         }
-
-        .Line2 {
-            position: relative;
-            z-index: 20;
-            border-radius: 4px;
-            background-color: #f11b5d;
-            width: 50%;
-            height: 5.58px;
-            margin-bottom: 10px;
+        .State {
+            display: flex;
+            font-size: 18px;
+            color: #00b767;
         }
-
-        span {
-            font-size: 16px;
-        }
-    }
-
-    .Sponsors {
-        font-size: 18px;
-        color: #b2b2b2;
     }
 }

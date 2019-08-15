@@ -4,12 +4,11 @@ import { withRouter } from "react-router";
 import "./Project.scss";
 
 const ongoingProject = props => {
-    var lineStyle = {
+    const lineStyle = {
         position: "relative",
         zIndex: "20",
         borderRadius: "4px",
         backgroundColor: "#f11b5d",
-        //width: 50%;
         height: "5.58px",
         marginBottom: "10px",
         width: `${props.amountRisedPercent}%`

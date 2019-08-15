@@ -3,7 +3,6 @@ import { formatDate } from "../../../../utils/Helper";
 import "./Project.scss";
 
 const finishedProject = props => {
-    console.log("props",props);
     return (
         <div className="ProjectFinished">
             <div className="Location">
@@ -37,27 +36,25 @@ const finishedProject = props => {
                     <p>{"Published"}</p>
                     <span>{formatDate(props.startDate)}</span>
                 </div>
-                <div style={{ marginLeft: "80px" }}>
+                <div>
                     <p>{"Finished"}</p>
                     <span>{formatDate(props.endDate)}</span>
                 </div>
-            </div>
-            <div className="Amount">
-                <div>
-                    <div className="Line" />
-                    <div className="Line2" />
-                </div>
-                <div className="Span">
-                    {" "}
-                    <span>{`${props.amountRisedPercent} Rised of $${
-                        props.amount
-                    } target`}</span>{" "}
+                <div className="Reised">
+                    <p>{"Donated"}</p>
+                    <span>{`$ ${props.risedAmount}`}</span>
                 </div>
             </div>
-
-            <div className="Sponsors">
+            <div>
                 <hr />
-                <span>{`${props.sponsorsCount} sponsors`}</span>
+                <div className="Bottom">
+                    <div className={"Sponsors"}>
+                        <span>{`${props.sponsorsCount} sponsors`}</span>
+                    </div>
+                    <div className={"State"}>
+                        <span>{`${props.status}`}</span>
+                    </div>
+                </div>
             </div>
         </div>
     );

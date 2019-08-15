@@ -1,5 +1,6 @@
 import {
-    PROJECT_SUCCESS,
+    ONGOING_PROJECT_SUCCESS,
+    FINISHED_PROJECT_SUCCESS,
     PROJECT_ERROR,
     CREATE_PROJECT_SUCCESS,
     UPDATE_PROJECT_SUCCESS,
@@ -10,9 +11,16 @@ import {
 
 import Axios from "../Axios";
 
-function ProjectSuccess(data) {
+function FinishedProjectSuccess(data) {
     return {
-        type: PROJECT_SUCCESS,
+        type: FINISHED_PROJECT_SUCCESS,
+        playload: data
+    };
+}
+
+function OngoingProjectSuccess(data) {
+    return {
+        type: ONGOING_PROJECT_SUCCESS,
         playload: data
     };
 }
@@ -125,17 +133,17 @@ export function UpdateProject(id, body) {
     };
 }
 
-export function GetProject(filter) {
+export function GetFinishedProject(filter) {
     return async dispatch => {
         try {
             dispatch(Loading(true));
-            const data = await Axios.get("/project", {
+            const data = await Axios.get("/project/finished", {
                 params: filter,
                 headers: {
                     Authorization: localStorage.getItem("accessToken")
                 }
             });
-            dispatch(ProjectSuccess(data.data));
+            dispatch(FinishedProjectSuccess(data.data));
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 alert(error.response.data.errors);
@@ -150,16 +158,17 @@ export function GetProject(filter) {
     };
 }
 
-export function GetProjectById(id) {
+export function GetOngoingProject(filter) {
     return async dispatch => {
         try {
             dispatch(Loading(true));
-            const data = await Axios.get(`/project/${id}`, {
+            const data = await Axios.get("/project/ongoing", {
+                params: filter,
                 headers: {
                     Authorization: localStorage.getItem("accessToken")
                 }
             });
-            dispatch(ProjectSuccess(data.data.data));
+            dispatch(OngoingProjectSuccess(data.data));
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 alert(error.response.data.errors);
