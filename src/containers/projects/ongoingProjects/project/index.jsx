@@ -51,7 +51,7 @@ const ongoingProject = props => {
                     <span>{formatDate(props.startDate)}</span>
                 </div>
                 <div style={{ marginLeft: "80px" }}>
-                    <p>{"Finished"}</p>
+                    <p>{"Finishing"}</p>
                     <span>{formatDate(props.endDate)}</span>
                 </div>
             </div>
