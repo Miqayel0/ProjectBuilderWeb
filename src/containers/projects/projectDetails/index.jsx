@@ -7,6 +7,7 @@ import "./Details.scss";
 const ProjectDetails = props => {
     const dispatch = useDispatch();
     const [amount, setAmount] = useState(0);
+    const [error, setError] = useState(null);
     let project = useSelector(state => state.project.project);
     const getProjectDetails = id => dispatch(GetProjectDetails(id));
     const donate = (id, data) => dispatch(UpdateProject(id, data));
@@ -21,11 +22,19 @@ const ProjectDetails = props => {
         let { value } = event.target;
 
         if (isNaN(value) || value <= 0) {
-            throw new Error("Invalid Amount");
+            setError("Invalid Amount")
+            return;
         }
 
+        setError(null);
         setAmount(value);
     };
+
+    const onBlurHndler = event => {
+        if(event.target.value.trim() === ""){
+            setError(null);
+        } 
+    }
 
     useEffect(() => {
         getProjectDetails(props.match.params.id);
@@ -51,7 +60,9 @@ const ProjectDetails = props => {
                             project.risedAmount
                         } raised`}</div>
                         <div className="Input">
+                            {error && <p>{error}</p>}
                             <input
+                                onBlur={onBlurHndler}
                                 type="text"
                                 name="donate"
                                 placeholder="Donation amount"
